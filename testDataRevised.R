@@ -201,3 +201,17 @@ t_ML <- dep.t.testML$statistic[[1]]
 df_ML <- dep.t.testML$parameter[[1]]
 r_ML <- sqrt(t_ML^2/(t_ML^2+df_ML))
 round(r_ML,3)
+
+
+#Anova
+##Create a long-format copy of the test data, with absolute offset
+baguetteA <- baguette
+baguetteA$AbsOffset <- abs(baguetteA$CutPosition-50)
+
+library(ez)
+##Run Anova
+baguetteModel <- ezANOVA(data = baguetteA, dv = .(AbsOffset), wid = .(ParticipantNumber), within = .(BaguetteSize), detailed=TRUE, type = 3)
+baguetteModel
+
+# running posthoc tests with bonferroni correction
+pairwise.t.test(baguetteA$AbsOffset, baguetteA$BaguetteSize, paired = TRUE, p.adjust.method ="bonferroni")
