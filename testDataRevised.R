@@ -87,14 +87,14 @@ write.dat(results, "result")
 ##cutPosAttGraph + geom_density(aes(x=results$CutPosition.1, colour = "First")) + geom_density(aes(x=results$CutPosition.2, colour = "Second")) + geom_density(aes(x=results$CutPosition.3, colour = "Third")) + xlab("Cut Position") + ylab("Frequency")
 
 ## Cut positions by size
-##cutPosSizGraph <- ggplot(baguette)
-##cutPosSizGraph + geom_density(aes(x=CutPosition, colour = BaguetteSize)) + ylab("Frequency")
+cutPosSizGraph <- ggplot(baguette)
+cutPosSizGraph + geom_density(aes(x=CutPosition, colour = BaguetteSize)) + ylab("Frequency")
 
-##cutPosSizScatter <- ggplot(baguette, aes(x=BaguetteSizeUnits, y=CutPosition, colour = BaguetteSizeUnits))
-##cutPosSizScatter + geom_point() + geom_smooth(method = "lm")
+cutPosSizScatter <- ggplot(baguette, aes(x=BaguetteSize, y=CutPosition, colour = BaguetteSize))
+cutPosSizScatter + geom_point() + geom_smooth(method = "lm")
 
-##cutPosSizBox <- ggplot(baguette, aes(x=BaguetteSize, y=CutPosition, colour = BaguetteSize))
-##cutPosSizBox + geom_boxplot()
+cutPosSizBox <- ggplot(baguette, aes(x=BaguetteSize, y=CutPosition, colour = BaguetteSize))
+cutPosSizBox + geom_boxplot()
 
 
 # Correlation
