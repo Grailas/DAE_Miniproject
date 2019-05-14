@@ -215,3 +215,41 @@ baguetteModel
 
 # running posthoc tests with bonferroni correction
 pairwise.t.test(baguetteA$AbsOffset, baguetteA$BaguetteSize, paired = TRUE, p.adjust.method ="bonferroni")
+
+#Running Histogram for each cut size, Small, Medium and Large
+histog <- ggplot(results, aes(x=results$Offset.Small))
+histog + geom_histogram()
+
+histog <- ggplot(results, aes(x=results$Offset.Medium))
+histog + geom_histogram()
+
+histog <- ggplot(results, aes(x=results$Offset.Large))
+histog + geom_histogram()
+
+#Hist showing the levels of experience with VR
+histog <- ggplot(results, aes(x=results$VrUse))
+histog + stat_count()
+
+#Hist for the SSQ post
+histog <- ggplot(results, aes(x=results$SSQPost))
+histog + geom_histogram()
+
+#Running interquartile range for the each error
+error = results$Offset.Small 
+IQR(error)
+
+error =  results$Offset.Medium
+IQR(error)
+
+error =  results$Offset.Large
+IQR(error)
+
+#Running scatterplot
+scatter <- ggplot(results, aes(x=results$ParticipantNumber, y= results$Offset.Small))
+scatter + geom_point()
+
+scatter <- ggplot(results, aes(x=results$Offset.Medium, y= results$ParticipantNumber))
+scatter + geom_point()
+
+scatter <- ggplot(results, aes(x=results$Offset.Large, y= results$Offset.Medium))
+scatter + geom_point()
