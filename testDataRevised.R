@@ -98,16 +98,22 @@ cutPosSizBox + geom_boxplot()
 
 
 # Correlation
-## Pearson 
-##cor(baguette$CutPosition, baguette$BaguetteSizeUnits, use="complete.obs", method="pearson")
+## Add sizes in units
+baguette$BaguetteSizeUnits <- NA
+baguette$BaguetteSizeUnits[baguette$BaguetteSize=="Small"] <- 0.5
+baguette$BaguetteSizeUnits[baguette$BaguetteSize=="Medium"] <- 1
+baguette$BaguetteSizeUnits[baguette$BaguetteSize=="Large"] <- 2
 
-##rcorr(baguette$CutPosition, baguette$BaguetteSizeUnits, type="pearson")
+## Pearson 
+cor(baguette$CutPosition, baguette$BaguetteSizeUnits, use="complete.obs", method="pearson")
+
+rcorr(baguette$CutPosition, baguette$BaguetteSizeUnits, type="pearson")
 
 ## Shared variability
-##cor(baguette$CutPosition, baguette$BaguetteSizeUnits, use="complete.obs", method="pearson")^2*100
+cor(baguette$CutPosition, baguette$BaguetteSizeUnits, use="complete.obs", method="pearson")^2*100
 
 ## Spearman
-##cor(baguette$CutPosition, baguette$BaguetteSizeUnits, method="spearman")
+cor(baguette$CutPosition, baguette$BaguetteSizeUnits, method="spearman")
 
 
 
