@@ -214,10 +214,19 @@ round(r_ML,3)
 baguetteA <- baguette
 baguetteA$AbsOffset <- abs(baguetteA$CutPosition-50)
 
+library(car)
+## test for homogeneity of variance
+leveneTest(baguetteA$AbsOffset, baguetteA$BaguetteSize, center = median)
+##
 library(ez)
-##Run Anova
-baguetteModel <- ezANOVA(data = baguetteA, dv = .(AbsOffset), wid = .(ParticipantNumber), within = .(BaguetteSize), detailed=TRUE, type = 3)
-baguetteModel
+##Run Anova ez
+##baguetteModelEz <- ezANOVA(data = baguetteA, dv = .(AbsOffset), wid = .(ParticipantNumber), within = .(BaguetteSize), detailed=TRUE, type = 3)
+##baguetteModelEz
+
+## create model for anova
+baguetteModel<-aov(AbsOffset~BaguetteSize, data = baguetteA)
+## show results
+summary(baguetteModel)
 
 # running posthoc tests with bonferroni correction
 pairwise.t.test(baguetteA$AbsOffset, baguetteA$BaguetteSize, paired = TRUE, p.adjust.method ="bonferroni")
